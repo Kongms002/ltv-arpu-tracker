@@ -4,6 +4,10 @@ Mobile growth intelligence that turns post-launch app telemetry into explainable
 
 GrossHacker combines normalized purchase/session events with campaign spend, calculates cohort ARPU, projected LTV90, CAC, and ROAS, then produces guarded `Scale`, `Hold`, `Reduce`, or `Pause` decisions. The hackathon MVP executes those decisions against a simulated campaign budget and writes an audit trail; production ad-network writes are intentionally left behind an OAuth connector boundary.
 
+## Demo video
+
+[Watch the 43-second mock-data walkthrough](https://raw.githubusercontent.com/Kongms002/ltv-arpu-tracker/main/demo/grosshacker-demo.mp4) (1920×1080, Korean captions).
+
 ## What works today
 
 - Seeded 28-day workspace that runs without credentials

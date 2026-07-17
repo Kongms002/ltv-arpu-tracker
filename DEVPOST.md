@@ -46,9 +46,11 @@ FastAPI, React, TypeScript, Vite, Python, REST API, Mobile Analytics, PostHog, G
 
 ## Try it out
 
-- GitHub repository: `https://github.com/your-username/ltv-arpu-tracker`
+- GitHub repository: `https://github.com/Kongms002/ltv-arpu-tracker`
 - Live demo: `https://your-demo-url.example`
 - API docs: `https://your-api-url.example/docs`
+
+Temporary video file: `https://raw.githubusercontent.com/Kongms002/ltv-arpu-tracker/main/demo/grosshacker-demo.mp4`
 
 ## Video demo outline
 
@@ -58,4 +60,3 @@ FastAPI, React, TypeScript, Vite, Python, REST API, Mobile Analytics, PostHog, G
 4. Review the top `Scale` action, show its evidence and confidence, and approve it.
 5. Open **Activity** to prove the simulated budget change was recorded.
 6. End on **Data Sources** and explain how PostHog/GA4 and ad-network OAuth adapters complete the production path.
-
