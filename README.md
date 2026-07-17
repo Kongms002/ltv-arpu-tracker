@@ -15,6 +15,7 @@ GrossHacker combines normalized purchase/session events with campaign spend, cal
 - Cohort-level ARPU, LTV90 proxy, CAC, ROAS, retention, and attribution coverage
 - Explainable recommendation engine with sample-size and data-quality checks
 - Automation Center showing the full ingest → analyze → guardrail → activate path
+- Optional GPT-5.6 growth brief through the OpenAI Responses API, with a credential-free deterministic fallback
 - Human review modal, simulated budget execution, and activity audit log
 - React dashboard with Overview, Cohorts, Automation, Data Sources, and Activity views
 - Responsive layouts and offline sample-data fallback
@@ -30,6 +31,14 @@ LTV:CAC         = projected LTV90 / CAC
 ```
 
 “ARPU lift” is presented as an observed association, not a causal claim. A real product would validate causality through controlled experiments.
+
+## How Codex and GPT-5.6 were used
+
+**Codex** was the primary engineering workspace for this project. It converted the product brief into the FastAPI/React architecture, implemented the cohort formulas and automation guardrails, wrote regression tests, exercised the full browser approval flow, rendered the demo video, and published the verified repository. The repo-local [`DESIGN.md`](./DESIGN.md) kept those product and safety decisions explicit throughout implementation.
+
+**GPT-5.6** is integrated as an optional narrative layer at `GET /api/ai/growth-brief`. When `OPENAI_API_KEY` is configured, the endpoint sends only the already-computed cohort metrics and guarded recommendations to the OpenAI Responses API using the `gpt-5.6` model. GPT-5.6 turns those facts into a concise daily operator brief but is instructed not to invent metrics, claim causality, or modify the action. Without a key, the endpoint returns a deterministic fallback so judges can run the full demo without credentials.
+
+This separation is intentional: transparent formulas decide the money-sensitive action; GPT-5.6 makes the evidence faster to understand.
 
 ## Architecture
 
@@ -55,6 +64,13 @@ Terminal 1:
 cd backend
 uv sync --extra dev
 uv run uvicorn app.main:app --reload
+```
+
+Optional GPT-5.6 narrative layer:
+
+```bash
+export OPENAI_API_KEY="your-key"
+export OPENAI_MODEL="gpt-5.6"
 ```
 
 Terminal 2:

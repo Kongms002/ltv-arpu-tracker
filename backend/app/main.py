@@ -4,6 +4,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from .analytics import build_dashboard, generate_recommendations, summarize_campaigns
+from .ai_brief import generate_growth_brief
 from .models import Event, Spend
 from .schemas import ApprovalIn, EventIn, SpendIn
 from .store import store
@@ -41,6 +42,13 @@ def recommendations() -> dict:
     _, rows = build_dashboard(store.campaigns, store.events, store.spends)
     items = generate_recommendations(rows, store.recommendations)
     return {"items": [asdict(item) for item in items], "guardrail": "Demo mode · human approval · budget adjustments capped at ±20%"}
+
+
+@app.get("/api/ai/growth-brief")
+def ai_growth_brief() -> dict:
+    _, rows = build_dashboard(store.campaigns, store.events, store.spends)
+    items = generate_recommendations(rows, store.recommendations)
+    return generate_growth_brief(rows, items)
 
 
 @app.post("/api/recommendations/{recommendation_id}/approve")

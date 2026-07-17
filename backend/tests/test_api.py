@@ -20,6 +20,15 @@ def test_dashboard_contract_and_reconciliation():
     assert body["data_health"]["attribution_coverage"] > 0.8
 
 
+def test_growth_brief_has_safe_fallback_without_api_key(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    response = client.get("/api/ai/growth-brief")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["provider"] == "deterministic-fallback"
+    assert "human approval" in body["brief"]
+
+
 def test_approving_recommendation_updates_campaign_and_activity():
     items = client.get("/api/recommendations").json()["items"]
     actionable = next(item for item in items if item["action"] != "hold")

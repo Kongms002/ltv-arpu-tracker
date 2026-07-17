@@ -5,6 +5,7 @@ description = "LTV and ARPU analytics API for mobile growth teams"
 requires-python = ">=3.9"
 dependencies = [
   "fastapi>=0.115,<1",
+  "openai>=2,<3",
   "uvicorn[standard]>=0.30,<1",
 ]
 
@@ -17,4 +18,3 @@ dev = [
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
-

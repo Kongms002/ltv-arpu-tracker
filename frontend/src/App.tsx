@@ -181,7 +181,7 @@ function AutomationPage({ recommendations, cohorts, onReview }: { recommendation
       <div className="page-intro split-intro"><div><span className="eyebrow">Automation center</span><h1>From signal to safe action.</h1><p>GrossHacker turns mobile revenue and retention signals into explainable ad-side actions—then applies guardrails before any budget moves.</p></div><div className="automation-mode"><span className="live-dot" /> Approval mode <strong>ON</strong></div></div>
       <div className="workflow-strip" aria-label="Automation workflow">
         <div><span>01</span><Icon name="sources" /><strong>Ingest</strong><small>GA4 · PostHog · spend</small></div><Icon name="chevron" />
-        <div><span>02</span><Icon name="pulse" /><strong>Analyze</strong><small>ARPU · LTV · ROAS</small></div><Icon name="chevron" />
+        <div><span>02</span><Icon name="pulse" /><strong>Analyze</strong><small>ARPU · LTV · GPT-5.6 brief</small></div><Icon name="chevron" />
         <div><span>03</span><Icon name="shield" /><strong>Guardrail</strong><small>Confidence · budget caps</small></div><Icon name="chevron" />
         <div><span>04</span><Icon name="automation" /><strong>Activate</strong><small>Meta · Google · AppLovin</small></div>
       </div>
