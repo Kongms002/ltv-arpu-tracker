@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * { box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; }
+      body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; background: #101b18; color: #fff; }
+      .scene { display: none; }
+      .scene.active { display: block; }
+      .shot { position: absolute; inset: 0 96px; width: 1728px; height: 1080px; object-fit: cover; }
+      .shade { position: absolute; inset: auto 0 0; height: 205px; background: rgba(16, 27, 24, .91); box-shadow: 0 -20px 55px rgba(16, 27, 24, .22); }
+      .number { position: absolute; left: 120px; bottom: 128px; color: #988df0; font-size: 25px; font-weight: 700; letter-spacing: 1px; }
+      .caption { position: absolute; left: 120px; bottom: 62px; color: #fff; font-size: 38px; font-weight: 700; letter-spacing: -1px; }
+      .brand-mini { position: absolute; right: 120px; bottom: 72px; color: #889691; font-size: 19px; font-weight: 700; }
+      .brand-mini b { color: #988df0; }
+      .card { width: 100%; height: 100%; background: radial-gradient(circle at 72% 28%, #302b5d 0, transparent 35%), #15201e; }
+      .mark { position: absolute; left: 145px; top: 280px; width: 84px; height: 84px; border-radius: 24px; background: linear-gradient(145deg, #8377ee, #5647c8); display: grid; place-items: center; font-size: 48px; box-shadow: 0 24px 60px #0b121188; }
+      .title { position: absolute; left: 145px; top: 405px; font-size: 78px; line-height: 1; font-weight: 800; letter-spacing: -3px; }
+      .subtitle { position: absolute; left: 150px; top: 535px; color: #aab6b2; font-size: 35px; font-weight: 500; }
+      .line { position: absolute; left: 150px; top: 640px; width: 170px; height: 5px; background: #786be2; border-radius: 9px; }
+      .meta { position: absolute; right: 145px; bottom: 110px; color: #71807b; font-size: 22px; letter-spacing: 2px; text-transform: uppercase; }
+    </style>
+  </head>
+  <body>
+    <main class="scene" id="scene">
+      <img class="shot" id="shot" alt="" />
+      <div class="shade"></div>
+      <div class="number" id="number"></div>
+      <div class="caption" id="caption"></div>
+      <div class="brand-mini"><b>✦</b> GrossHacker AI</div>
+    </main>
+    <main class="card" id="card">
+      <div class="mark">✦</div>
+      <div class="title" id="title"></div>
+      <div class="subtitle" id="subtitle"></div>
+      <div class="line"></div>
+      <div class="meta">Hackathon product demo · Mock data</div>
+    </main>
+    <script>
+      const params = new URLSearchParams(location.search)
+      const isScene = params.get('type') === 'scene'
+      document.getElementById('scene').classList.toggle('active', isScene)
+      document.getElementById('card').style.display = isScene ? 'none' : 'block'
+      if (isScene) {
+        document.getElementById('shot').src = `./frames/${params.get('frame')}`
+        document.getElementById('number').textContent = params.get('number') || ''
+        document.getElementById('caption').textContent = params.get('caption') || ''
+      } else {
+        document.getElementById('title').textContent = params.get('title') || ''
+        document.getElementById('subtitle').textContent = params.get('subtitle') || ''
+      }
+    </script>
+  </body>
+</html>
